@@ -1,2 +1,12 @@
 server:
   port: 8080
+#  tomcat:
+#    threads:
+#        max: 200
+#        min-spare: 50
+#spring:
+#  data:
+#    mongodb:
+#      host: localhost
+#      port: 27017
+#      database: zjy_mongo_demo

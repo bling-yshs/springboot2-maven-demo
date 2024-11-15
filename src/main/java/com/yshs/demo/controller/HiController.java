@@ -1,37 +1,35 @@
 package com.yshs.demo.controller;
 
-import com.yshs.demo.entity.St;
-import com.yshs.demo.entity.TestEntity;
+import com.yshs.demo.entity.Student;
 import com.yshs.demo.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
+@Slf4j
 public class HiController {
 
-    @Resource
-    private St st;
-
-    @Autowired
-    private TestEntity testEntity;
-
-    @Autowired
-    private StudentService studentService;
-
-    @RequestMapping("/hi")
-    public String hi() {
-        return "hi";
-    }
+    private final StudentService studentService;
 
     @RequestMapping("/test")
+    @SneakyThrows
     public void test() {
-        st.test();
+        Student student = new Student();
+        student.setName("yshs");
+        student.setAge(18);
+        studentService.save(student);
+        List<Student> list = studentService.list();
+        log.info("※list的值为: {}", list);
     }
 
-    private void test(int foo, int bar) {
-        System.out.println("test");
+    @RequestMapping("/test2")
+    @SneakyThrows
+    public void test2() {
     }
 }
